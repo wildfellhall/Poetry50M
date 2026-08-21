@@ -36,3 +36,38 @@ formatted_dataset = dataset.map(format_poem)
 with open("corpus.txt", "w", encoding="utf-8") as f:
     for text in formatted_dataset['train']['text']:
         f.write(text + "\n")
+
+# Tokenizer - Cell 2: 
+# Train BPE Tokenizer with small vocab to save embedding parameters
+special_tokens = [
+    "<|pad|>",
+    "<|startofpoem|>",
+    "<|title|>",
+    "<|author|>",
+    "<|body|>",
+    "<|endofpoem|>"
+]
+
+bpe_tokenizer = ByteLevelBPETokenizer()
+bpe_tokenizer.train(
+    files=["corpus.txt"],
+    vocab_size=16384,  # Small vocab keeps embedding params < 8.4M
+    min_frequency=2,
+    special_tokens=special_tokens
+)
+
+# Save and wrap as a Hugging Face Fast Tokenizer
+os.makedirs("poetry_tokenizer", exist_ok=True)
+bpe_tokenizer.save_model("poetry_tokenizer")
+
+tokenizer = PreTrainedTokenizerFast(
+    tokenizer_file="poetry_tokenizer/vocab.json",
+    vocab_file="poetry_tokenizer/vocab.json",
+    merges_file="poetry_tokenizer/merges.txt",
+    bos_token="<|startofpoem|>",
+    eos_token="<|endofpoem|>",
+    pad_token="<|pad|>",
+    unk_token="<|pad|>"
+)
+
+
