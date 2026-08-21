@@ -39,6 +39,7 @@ with open("corpus.txt", "w", encoding="utf-8") as f:
 
 # Tokenizer - Cell 2: 
 # Train BPE Tokenizer with small vocab to save embedding parameters
+
 special_tokens = [
     "<|pad|>",
     "<|startofpoem|>",
