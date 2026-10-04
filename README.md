@@ -1,6 +1,8 @@
 # Poetry50M
 A small language model trained from scratch on the DanFosing/public-domain-poetry dataset on HuggingFace. 
 
+Available at https://huggingface.co/wildfellhall/public-poetry-50m
+
 ## Built With: 
 Dataset: DanFosing/public-domain-poetry on HuggingFace
 Libraries: Pytorch
