@@ -64,6 +64,5 @@ Config:
  TOTAL TRAINABLE PARAMETERS: 46,742,528
  HARD LIMIT STATUS: PASS
 
-AI Assistance: Gemini 3.1 Flash, GPT 5.6 Sol for discussion, planning, and training script refinement
 ## Hardware: 
 Using Google Colab Pro, I trained this model on an A100 GPU. 
